@@ -1,0 +1,566 @@
+<!DOCTYPE HTML>
+<html lang="id" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>(WIP) Dasar GameDev 2D dengan Haxeflixel</title>
+        <meta name="robots" content="noindex" />
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><div>Donasi</div></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="index.html">Pengantar</a></li><li class="chapter-item expanded "><a href="pdg/index.html"><strong aria-hidden="true">1.</strong> Pengenalan Dunia Game</a></li><li class="chapter-item expanded "><a href="dph/index.html"><strong aria-hidden="true">2.</strong> Dasar Pemrograman Haxe</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="dph/01-apa-itu-programming-dan-haxe.html"><strong aria-hidden="true">2.1.</strong> Apa itu Pemrograman</a></li><li class="chapter-item expanded "><a href="dph/04-variable.html"><strong aria-hidden="true">2.2.</strong> Variable</a></li><li class="chapter-item expanded "><a href="dph/05-tipe-data.html"><strong aria-hidden="true">2.3.</strong> Tipe Data</a></li><li class="chapter-item expanded "><a href="dph/06-operator.html"><strong aria-hidden="true">2.4.</strong> Operator</a></li><li class="chapter-item expanded "><a href="dph/07-branching.html"><strong aria-hidden="true">2.5.</strong> Branching</a></li><li class="chapter-item expanded "><a href="dph/08-looping.html"><strong aria-hidden="true">2.6.</strong> Koleksi dan Looping</a></li></ol></li><li class="chapter-item expanded "><a href="hxf/index.html"><strong aria-hidden="true">3.</strong> Pengenalan Haxeflixel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="hxf/01-game-engine.html"><strong aria-hidden="true">3.1.</strong> Apa itu Game Engine</a></li><li class="chapter-item expanded "><a href="hxf/02-installasi-haxeflixel.html"><strong aria-hidden="true">3.2.</strong> Installasi Haxeflixel</a></li><li class="chapter-item expanded "><a href="hxf/03-membuat-project-game.html"><strong aria-hidden="true">3.3.</strong> Membuat Project Game</a></li></ol></li><li class="chapter-item expanded "><a href="ddg/index.html"><strong aria-hidden="true">4.</strong> Mendesain Game</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="REFERENSI.html">Referensi</a></li><li class="chapter-item expanded affix "><div>Kontributor</div></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">(WIP) Dasar GameDev 2D dengan Haxeflixel</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="tentang-buku-ini"><a class="header" href="#tentang-buku-ini">Tentang Buku ini</a></h2>
+<p>Saya buat buku ini untuk mengenalkan penciptaan game komputer 2D. Saya harap buku ini membantu kamu mampu mengenal dunia pengembangan game sampai mempublikasikan game kamu secara indie, jangan khawatir tidak bisa programming karena dalam buku ini saya menambahkan bahasan dasar pemrograman untuk pemula, bahasa pemrograman Haxe.</p>
+<p>Buku ini akan dibagi menjadi 4 segment utama:</p>
+<p><strong>Pengenalan Dunia Pengembangan Game</strong></p>
+<p>Bagian ini kamu akan belajar mengenai filosofi dari pengembangan game, seperti asal-usulnya, trend sampai persiapan untuk kamu terjun ke dunia pengembangan game.</p>
+<p><strong>Dasar Pemrograman dengan Haxe</strong></p>
+<p>Bagian sepenuhnya fokus mengajari tentang dasar pemrograman dengan orientasi yang dibutuhkan untuk bisa mengembangkan game, seperti quick sort, matriks dan pemrograman berorientasi objek.</p>
+<p><strong>Pengenalan Haxeflixel</strong></p>
+<p>Bagian ini akan fokus berkenalan dengan perkakas yang dibutuhkan untuk membuat game menggunakan Haxeflixel dan alat pembantu lainya, penyajian bagian ini berupa panduan membuat game untuk mengenal komponen-komponen teknis dalam game dan mengenalkan workflow berkerja dengan Haxeflixel.</p>
+<p><strong>Menrancang Design Game</strong></p>
+<p>Bagian ini berfokus kepada aspek rekasaya perangkat lunak dari sisi game developer, seperti membuat dokumen design, melakukan riset dari game orang lain dan merilis game anda untuk dimainkan oleh para gamers.</p>
+<p>Buku ini gratis (tapi bila kamu berbaik hati ingin donasi bisa, <a href="https://github.com/sponsors/dnogl">klik ini</a>) saya dedikasikan untuk siapa pun yang ingin terjun mengembang game sendiri (termasuk diri saya dahulu), Frederett salah satu motivasi saya ingin membuat game untuk dimainkan oleh beliau alias saya nge-<em>simp</em> yang berakhir saya tetarik dengan pengembangan game, dan yang terpenting untuk bangkitnya developer game Indonesia.</p>
+<section style="text-align: right"> 
+Internet, 19 November 2022
+<p>Yoghaswara <strong>&quot;dnogl&quot;</strong> Hadi Nugroho</p>
+</section><div style="break-before: page; page-break-before: always;"></div><h1 id="e"><a class="header" href="#e">e</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="dasar-pemrograman-haxe"><a class="header" href="#dasar-pemrograman-haxe">Dasar Pemrograman Haxe</a></h1>
+<p>Bagian ini akan dibagi menjadi 17, keluaran dari bab yaitu kamu bisa menulis program untuk mengoperasikan isi array dengan berbagai jenis tipe data dan memahami konsep dari paradigma orientasi objek.</p>
+<ol>
+<li><a href="dph/01-apa-itu-programming-dan-haxe.html">Apa itu Programming</a></li>
+<li>Installasi Haxe</li>
+<li>Installasi VScode</li>
+<li><a href="dph/04-variable.html">Variable</a></li>
+<li><a href="dph/05-tipe-data.html">Tipe Data</a></li>
+<li>Operator</li>
+<li><a href="dph/07-branching.html">Branching</a></li>
+<li>Loop dan Collection</li>
+<li>Algoritme: Alur Program</li>
+<li>Fungsi</li>
+<li>Algoritme Pengurutan: Quick Short</li>
+<li>Algoritme Pencarian: Linear Search</li>
+<li>Tipe Data Buatan: Matriks</li>
+<li>Aplikasi Matriks: Game Hap-Hap</li>
+<li>OOP: Kelas dan Objek</li>
+<li>OOP: Inheritance</li>
+<li>OOP: Mixing</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="apa-itu-programming"><a class="header" href="#apa-itu-programming">Apa itu Programming</a></h1>
+<p>Tak kenal maka tak sayang, kalimat ini tepat untuk menggambarkan posisi bagian ini. Komputer sudah menjadi alat yang dominan untuk bermain permainan, maka kita perlu berkenalan denganya. Singkat saja, komputer adalah mesin elektronik yang digunakan untuk melakukan perhitungan baik berupa angka ataupun logika tetapi komputer hanya mesin bodoh tanpa program didalamnya.</p>
+<p><strong>Program</strong> : Kumpulan kode-kode komputer berisi tugas-tugas yang akan dikerjakan komputer, seperti memunculkan tulisan, menghitung angka, memutar video dan berkirim pesan lewat di internet.</p>
+<p><strong>Programming</strong>: Aktivitas menulis program komputer untuk menyampaikan ide-ide algoritme supaya komputer mengerti dan mengerjakanya.</p>
+<p>Tujuan dari menulis program komputer adalah mengajari komputer untuk memanfaatkan dirinya supaya kita bisa menyampaikan keinginan untuk dikerjakan oleh komputer, termasuk salah satu jenis pemanfaatan proram komputer. </p>
+<p>Kunci sukses berkomunikasi dengan komputer selain menguasai pemrograman dan teori ilmu komputasi adalah berpikir komputasional, yang mana ini bisa berlaku dimana saja tidak hanya didalam komputer dan penyonkong mindset.</p>
+<h2 id="bahasa-pemrograman"><a class="header" href="#bahasa-pemrograman">Bahasa Pemrograman</a></h2>
+<!-- Illustrasi tentang peran bahasa pemrograman -->
+<p>Komputer tidak bisa mengerti bahasa manusia, maka dibuat bahasa pendamping sehingga komputer dan manusia bisa bertukar pikiran. Bahasa ini disebut bahasa pemrograman yang agak serupa dengan bahasa manusia (Bahasa Inggris) tetapi memiliki makna-makna yang bisa dipahami oleh komputer.</p>
+<p>Pada buku ini kita akan menggunakan bahasa pemrograma Haxe (dibaca Heks), karena bahasa bersifat objek oriented, multi platform dan memiliki pustaka pengolahan grafis yang baik sehingga cocok untuk digunakan untuk penggembangan game (karena game banyak memengguankan grafis dan audio komputer).</p>
+<h2 id="cara-komputer-menjalankan-program"><a class="header" href="#cara-komputer-menjalankan-program">Cara komputer menjalankan program.</a></h2>
+<ul>
+<li>Awalnya kita menulis kode dalam bahasa pemrograman.</li>
+<li>Lalu di kompile.</li>
+<li>Lalu di muat oleh sistem operasi komputer.</li>
+<li>Akhirnya program bekerja dan berjalan.</li>
+</ul>
+<h2 id="haxe"><a class="header" href="#haxe">Haxe</a></h2>
+<p>Haxe adalah bahasa pemrograman <em>open-source</em> serba guna bertipe statis mendukung paradigma berorientasi objek dan berjalan dibanyak platform komputer. Kasus pakai Haxe beragam, mulai dari membuat aplikasi desktop (termasuk game), web, aplikasi mobile dan <em>command line</em>.</p>
+<p>Berikut sekedar contoh kode program &quot;Hello UwU&quot; dalam Haxe:</p>
+<pre><code class="language-javascript">class Test {
+  static function main() {
+    trace(&quot;Hello, UwU&quot;);
+  }
+}
+</code></pre>
+<p>Kamu bisa mencobanya tanpa menginstall kompilator Haxe di <a href="https://try.haxe.org/#1f9fE444">https://try.haxe.org/</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="variable"><a class="header" href="#variable">Variable</a></h2>
+<p>Kode program komputer tersusun dari banyak komponen logis, seperti branching, looping, operator dan variable untuk mengolah data. Kita mulai dari belakang yakni variable.</p>
+<p><strong>Variabel</strong> adalah tempat kita menyimpan sementara nilai dalam program, nilai ini akan disimpan didalam memori (RAM) komputer dan kita dapat mengambil nilai tersebut dengan menulis namanya. Ibarat sebuah rumah, nilai yang disimpan ke komputer pasti memiliki alamat supaya kita bisa mengunjunginya (mengguankan nilai yang disimpan) untuk keperluan kita.</p>
+<p>Variable tersusun dari 3 komponen utama:</p>
+<ul>
+<li>Nama</li>
+</ul>
+<p>Menandai dimana nilai disimpan</p>
+<ul>
+<li>Tipe data</li>
+</ul>
+<p>Menandai data tipe apa yang disimpan, penjelasan tentang ini nanti dibagian selanjutnya.</p>
+<ul>
+<li>Nilai</li>
+</ul>
+<p>Nilai yang disimpan</p>
+<p>Penulisan variable dalam kode program, menggunakan aturan tulis berikut:</p>
+<pre><code class="language-javascript">var &lt;nama&gt; : &lt;tipe data&gt; = &lt;nilai&gt;;
+</code></pre>
+<p>Berikut contohnya:</p>
+<pre><code class="language-javascript">var umur : Int = 27;
+var nama : String = &quot;dnogl&quot;;
+</code></pre>
+<p>Kita dapat merefaktor kode program Hello UwU dengan menggunakan variable,</p>
+<pre><code class="language-javascript">class Test{
+    static main(){
+        var uwu = &quot;Hello UwU&quot;;
+        trace(uwu);
+    }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="tipe-data"><a class="header" href="#tipe-data">Tipe Data</a></h1>
+<p>Komputer menyimpan semua nilai secara uniform dalam bentuk byte, maka dalam bahasa pemrograma dibuat fitur tipe data untuk menentukan data tersebut berupa huruf, angka ataupun data buatan supaya membantu kita mengetahui dan memroses data nilai yang disimpan.</p>
+<p>Tipe data dalam pemrogram dibagi menjadi 2, tipe primitif dan artifisial (buatan):</p>
+<h2 id="tipe-primitif"><a class="header" href="#tipe-primitif">Tipe Primitif</a></h2>
+<p>Tipe data jenis ini terdiri unit data tekstual dasar dalam kehidupan kita seperti huruf, angka dan juga data logika seperti benar dan salah.</p>
+<div class="table-wrapper"><table><thead><tr><th>Nama</th><th>Deskripsi</th><th>Notasi</th><th>Nilai</th></tr></thead><tbody>
+<tr><td>Integer</td><td>Menyimpan angka bilang bulat</td><td><code>Int</code></td><td>-1,0,1</td></tr>
+<tr><td>Float</td><td>Menyimpan angka bilangan pecahan</td><td><code>Float</code></td><td>3.14, -1.06</td></tr>
+<tr><td>String</td><td>Menyimpan huruf dan simbol, nilai string diapit oleh petik dua</td><td><code>String</code></td><td><code>&quot;Hello&quot;</code>,<code>&quot;UwU</code></td></tr>
+<tr><td>Boolean</td><td>Menyimpan nilai logika benar atau salah</td><td><code>Bool</code></td><td><code>true</code>, <code>false</code></td></tr>
+</tbody></table>
+</div>
+<p>Kita perlu mengetahui cara untuk menulis nilai sebuah tipe data karena beberapa ada yang perlu notasi seperti string yang memerlukan petik dua (<code>&quot;</code>) yang disebut dengan definisi nilai literal.</p>
+<pre><code class="language-javascript">8 // Integer
+3.14 // Float
+true // Boolean
+&quot;String&quot; // String
+</code></pre>
+<h3 id="tipe-majemuk"><a class="header" href="#tipe-majemuk">Tipe Majemuk</a></h3>
+<p>Tipe data yang mampu menyimpan banyak nilai, tipe data ini perpanjangan bentuk dari tipe data primitif dengan kemampuan kuantitas.</p>
+<h2 id="tipe-buatan"><a class="header" href="#tipe-buatan">Tipe Buatan</a></h2>
+<p>Tipe data jenis merupakan tipe data buatan dari gabungan tipe data primitif dan/atau kumpulan fungsi, seperti <code>struct</code> (dibaca strak), enum dan kelas di OOP (ini akan dibahas nanti ditempatnya).</p>
+<p><strong>Struct</strong> adalah tipe data yang terdiri dari campuran tipe data primitif, untuk membuatnya dengan format berikut:</p>
+<pre><code class="language-javascript">typedef &lt;nama struct&gt; = {
+    &lt;nama elemen struct&gt;:&lt;tipe data element struct&gt;;
+    &lt;nama elemen struct&gt;:&lt;tipe data element struct&gt;;
+    ...
+};
+</code></pre>
+<p>Contoh pemakaianya</p>
+<pre><code class="language-javascript">typedef Orang = {
+    nama:String;
+    umur:Int;
+};
+
+var adelin : Orang = {nama: &quot;Adelina&quot;, umur: 23};
+
+trace(adelin.nama,&quot;nama&quot;);
+trace(adelin.umur,&quot;umur&quot;);
+</code></pre>
+<p>Jika kamu bingung pemakaian struct, inti dari pemakaian struct untuk mengambarkan karakteristik sebuah objek seperti Orang punya nama dan umur, Kendaran punya model kendaran dan perusahaan pabriknya, dan objek majemuk lainya.</p>
+<p><strong>Enum</strong> adalah tipe data buatan yang nilai isinya kita tentukan sendiri, misal tipe data bool hanya memiliki 2 isi yakni <code>true</code> dan <code>false</code>, bagaimana kalau kita membuat tipe data serupa tapi dengan tambahan nilai baru <code>gak tau</code>. </p>
+<p>Ok, sebelum itu kita patut ketahui dulu mendefinisikan sebuah enum:</p>
+<pre><code class="language-javascript">enum &lt;nama enum&gt; = {
+    &lt;elemen enum&gt;;
+    &lt;elemen_enum&gt;;
+    ...
+};
+</code></pre>
+<p>Berikut penerapanya:</p>
+<pre><code class="language-javascript">enum BOOLT = {
+    TRUE;
+    FALSE;
+    GAK_TAU;
+}
+
+var boolt_test : BOOLT = TRUE;
+boolt_test = GAK_TAU;
+</code></pre>
+<p>Pemanfaatan enum untuk membatasi pilihan nilai, supaya membuat program lebih strict sehingga solid menerapakan logika.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="operator"><a class="header" href="#operator">Operator</a></h1>
+<p>Setiap nilai memiliki operasi tersendiri sesuai dengan tipenya seperti apakah kita bisa mengoperasikan penjumlahan angka dengan huruf ?</p>
+<p>Bagian ini kita akan melanjutkan bahasan dari tipe data tentang semantiknya pada tipe data primitif (untuk buatan ada bagianya sendiri).</p>
+<h2 id="operasi-aritmatika"><a class="header" href="#operasi-aritmatika">Operasi Aritmatika</a></h2>
+<p>Operasi ini dekat dengan keseharian yakni operasi tambah, kali, kurang, bagi dan sebagainya. Tentunya operasi ini hanya untuk data angka seperti tipe data integer dan float.</p>
+<div class="table-wrapper"><table><thead><tr><th>Operator</th><th>Nama Operasi</th><th>Tipe Data</th><th>Aplikasinya</th></tr></thead><tbody>
+<tr><td><code>+</code></td><td>Tambah</td><td>Integer, Float</td><td><code>1 + 2</code> ,  <code>3.14 + 2.4</code></td></tr>
+<tr><td><code>-</code></td><td>Kurang</td><td>Integer, Float</td><td><code>2 - 3</code> , <code>4.20 - 6.09</code></td></tr>
+<tr><td><code>*</code></td><td>Kali</td><td>Integer, Float</td><td><code>1 * 2</code> , <code>4.3 * 0.4</code></td></tr>
+<tr><td><code>/</code></td><td>Bagi</td><td>Integer, Float</td><td><code>4/2</code> , <code>3.2 / 2</code></td></tr>
+</tbody></table>
+</div>
+<h2 id="operator-relasional"><a class="header" href="#operator-relasional">Operator Relasional</a></h2>
+<p>Operator ini untuk melakukan operasi relasional atau melihat hubungan sesuatu nilai, seperti apakah dia sama dengan, lebih besar bahkan tidak sama dengan. Hasil dari operasi ini bernilai bool : <code>true</code> dan <code>false</code>.</p>
+<div class="table-wrapper"><table><thead><tr><th>Operator</th><th>Nama Operasi</th><th>Tipe Data</th><th>Aplikasinya</th></tr></thead><tbody>
+<tr><td><code>==</code></td><td>Sama dengan</td><td>Integer, Float, String, Bool</td><td><code>1 + 2</code> ,  <code>3.14 + 2.4</code>, <code>&quot;UwU&quot; == &quot;UwU&quot;</code>, <code>false == false</code></td></tr>
+<tr><td><code>!=</code></td><td>Tidak sama dengan</td><td>Integer, Float, String, Bool</td><td><code>1 + 2</code> ,  <code>3.14 + 2.4</code>, <code>&quot;UwU&quot; != &quot;EwE&quot;</code>, <code>true != false</code></td></tr>
+<tr><td><code>&gt;=</code></td><td>Lebih dari sama dengan</td><td>Integer, Float</td><td><code>2 &gt;= 1</code> ,  <code>3.14 &gt;= 2.4</code></td></tr>
+<tr><td><code>&lt;=</code></td><td>Kurang dari sama dengan</td><td>Integer, Float</td><td><code>1 &lt;= 2</code> ,  <code>3.14 &lt;= 2.4</code></td></tr>
+<tr><td><code>&gt;</code></td><td>Lebih dari</td><td>Integer, Float</td><td><code>2 &gt; 1</code> ,  <code>3.14 &gt; 2.4</code></td></tr>
+<tr><td><code>&lt;</code></td><td>Kurang dari</td><td>Integer, Float</td><td><code>1 + 2</code> ,  <code>3.14 + 2.4</code></td></tr>
+</tbody></table>
+</div>
+<h2 id="operator-logika"><a class="header" href="#operator-logika">Operator Logika</a></h2>
+<p>Operasi ini khusus untuk nilai logika, seperti operasi dan, atau dan negasi.</p>
+<div class="table-wrapper"><table><thead><tr><th>Operator</th><th>Nama Operasi</th><th>Tipe Data</th><th>Aplikasinya</th></tr></thead><tbody>
+<tr><td><code>&amp;&amp;</code></td><td>Dan</td><td>Bool</td><td><code>true &amp;&amp; false</code></td></tr>
+<tr><td><code>||</code></td><td>Atau</td><td>Bool</td><td><code>true || false</code></td></tr>
+<tr><td><code>!</code></td><td>Negasi</td><td>Bool</td><td><code>!false</code></td></tr>
+</tbody></table>
+</div>
+<p>Operator logika memerlukan tambahan sedikit untuk pemahamanya dan nilai logika akan lebih mudah diterima bila dihasilkan dari kondisi tertentu, berikut penjelasanya singkatnya:</p>
+<h3 id="logika-dan-and"><a class="header" href="#logika-dan-and">Logika Dan (AND)</a></h3>
+<p>Logika dan akan menilai benar bila keduanya bernilai benar, dan hanya bernilai false bila salah satu atau kedua nilainya salah. </p>
+<div class="table-wrapper"><table><thead><tr><th>Kondisi 1</th><th>Kondisi 2</th><th>Hasil</th></tr></thead><tbody>
+<tr><td><code>true</code></td><td><code>true</code></td><td><code>true</code></td></tr>
+<tr><td><code>true</code></td><td><code>false</code></td><td><code>false</code></td></tr>
+<tr><td><code>false</code></td><td><code>true</code></td><td><code>false</code></td></tr>
+<tr><td><code>false</code></td><td><code>false</code></td><td><code>false</code></td></tr>
+</tbody></table>
+</div>
+<p>Pemakaian logika ini untuk memastikan semua nilai bernilai benar atau menentukan suatu kondisi semuanya terpenuhi. </p>
+<p>Praktiknya dalam game ini seperti penangkap kondisi bila pemain menekan dua tombol sekaligus untuk aksi kombo/ngu-ulti.</p>
+<h3 id="logika-atau-or"><a class="header" href="#logika-atau-or">Logika Atau (OR)</a></h3>
+<p>Logika ini akan bernilai benar bila keduanya benar dan nilai kondisi bukan pertama salah, logika ini akan salah bila nilai kondisi pertama salah dan keduanya salah.</p>
+<div class="table-wrapper"><table><thead><tr><th>Kondisi 1</th><th>Kondisi 2</th><th>Hasil</th></tr></thead><tbody>
+<tr><td><code>true</code></td><td><code>true</code></td><td><code>true</code></td></tr>
+<tr><td><code>true</code></td><td><code>false</code></td><td><code>true</code></td></tr>
+<tr><td><code>false</code></td><td><code>true</code></td><td><code>false</code></td></tr>
+<tr><td><code>false</code></td><td><code>false</code></td><td><code>false</code></td></tr>
+</tbody></table>
+</div>
+<p>Logika ini berguna untuk memastikan salah satu dari suatu kondisi terpenuh, seperti 
+pada game apakah pemain menekan <code>S</code> atau <code>Arrow Right</code> untuk bergerak ke kanan.</p>
+<h3 id="logika-negasi"><a class="header" href="#logika-negasi">Logika Negasi</a></h3>
+<p>Logika ini berfungsi menciptakan kebalik nilai/kondisi yang diberikan, bila ada kondisi 1 bernilai <code>true</code> maka dengan negasi akan berubah menjadi <code>false</code> dan sebaliknya.</p>
+<p>Operasi ini sekerabat salah satu operasi relasional yakni operator tidak sama dengan.</p>
+<div class="table-wrapper"><table><thead><tr><th>Kondisi</th><th>Hasil Negasi</th></tr></thead><tbody>
+<tr><td><code>true</code></td><td><code>false</code></td></tr>
+<tr><td><code>false</code></td><td><code>true</code></td></tr>
+</tbody></table>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="branching"><a class="header" href="#branching">Branching</a></h1>
+<p>Branching dalam bahasa indonesia artinya percabangan, makna yang dimaksud disini artinya percabangan logika / pilihan. Program bisa memilih untuk menjalankan kode tertentu kalau ada sebuah percabangan yang membaginya, ada dua bagian pemilihan dalam program yakni kondisi dan aksi:</p>
+<ul>
+<li><strong>Kondisi</strong>: operator yang mehasilkan nilai benar salah (kondisi terpenuhi), untuk melakukan aksi.</li>
+<li><strong>Aksi</strong>: baris kode yang dikehendaki berjalan bila kondisi tepernuhi (true/nilai cocok), dan sebaliknya.</li>
+</ul>
+<p>Ada 2 bentuk branching, berdasarkan hasil nilai Bool dan pecocokan nilai. Kita akan mulai dari yang pertama:</p>
+<h2 id="pernyataan-if"><a class="header" href="#pernyataan-if">Pernyataan IF</a></h2>
+<p><strong>Penyataan IF</strong> adalah pernyataan bentuk branching dalam program berdasarkan nilai benar salah, <code>IF</code> dalam bahasa Indonesia berarti jika.
+Berikut penulisanya dalam program:</p>
+<pre><code class="language-javascript">if(&lt;kondisi&gt;){
+    &lt;kode aksi&gt;;
+}
+</code></pre>
+<p>Contohnya:</p>
+<pre><code class="language-javascript">var a = 3;
+if(a &lt; 4){
+    trace(&quot;variable a lebih kecil dari 4&quot;);
+}
+</code></pre>
+<p>Potongan kode diatas akan menjalankan fungsi trace, karena a yang bernilai 3 dan dibandingkan lebih kecil dengan 4 sehingga menghasilkan nilai true. Coba kamu jalankan program diatas tetapi dengan nilai variable a lebih besar dari 4, katakanlah 5.</p>
+<p>Tetapi pernyataan IF punya bentuk lain yang lebih powerful (mencakup banyak kondisi sampingan) mengikat kondisi.</p>
+<h3 id="pernyataan-if-else"><a class="header" href="#pernyataan-if-else">Pernyataan IF-ELSE</a></h3>
+<h3 id="pernyataan-if-else-if-else"><a class="header" href="#pernyataan-if-else-if-else">Pernyataan IF-ELSE IF-ELSE</a></h3>
+<h2 id="pernyataan-switch"><a class="header" href="#pernyataan-switch">Pernyataan Switch</a></h2>
+<p><strong>Pernyataan Switch</strong> adalah pernyataan bentuk branching dengan pencocokan nilai, jadi aksi dijalankan berdasarkan nilai yang dijadikan kondisi dari nilai banding.</p>
+<p>Misal ada aksi untuk nilai 2, maka ketika nilai banding bernilai 2 berarti kondisi terpenuhi dan aksi untuk nomor 2 dijalankan. Format untuk deklarasi pernyataan switch sebagai berikut:</p>
+<pre><code class="language-javascript">switch(&lt;nilai banding&gt;){
+    case &lt;kondisi&gt;:
+        &lt;aksi&gt;;
+    case &lt;kondisi&gt;:
+        &lt;aksi&gt;;
+    default:
+        &lt;aksi&gt;;
+}
+</code></pre>
+<p>Contoh penulisanya:</p>
+<pre><code class="language-javascript">var nilai = 1;
+switch(nilai){
+    case 1:
+        trace(&quot;aksi 1&quot;);
+    case 2:
+        trace(&quot;aksi 2&quot;);
+    default:
+        trace(&quot;aksi sampingan&quot;);
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="koleksi-dan-looping"><a class="header" href="#koleksi-dan-looping">Koleksi dan Looping</a></h1>
+<h2 id="koleksi"><a class="header" href="#koleksi">Koleksi</a></h2>
+<p>Koleksi adalah jenis tipe data yang dapat menampung lebih dari satu jumlah nilai, sempat di bahas pada bagian Tipe Data terkait tipe data majemuk. 
+Program bisa menyimpan banyak nilai tanpa harus mendekalarasikan banyak variable hanya untuk menampung nilai dengan konteks yang sama.</p>
+<p>Kita akan berkenalan lagi dengan tipe data Array, berikut deklarasinya:</p>
+<pre><code class="language-javascript">var koleksi : Array&lt;&lt;tipe data&gt;&gt; = [&lt;nilai&gt;;&lt;nilai&gt;]; 
+</code></pre>
+<p>Contoh penulisanya sebagai berikut:</p>
+<pre><code class="language-javascript">var dompet: Array&lt;String&gt; = [&quot;Uang&quot;, &quot;KTP&quot;, &quot;Poto VTuber&quot;];
+</code></pre>
+<p>Kita dapat mengakses isi nilai dari array (disebut dengan element) dengan menggunakan index (<code>[]</code>), 
+hal yang perlu diperhatikan bahwa index sebuah array dimulai dari 0. </p>
+<p>Pada contoh variabel dompet kita bisa melihat ada 3 nilai string, maka untuk mengakses elemen 
+pertama (<code>&quot;Uang</code>) dengan index 0 kita bisa menuliskanya sebagai berikut:</p>
+<pre><code class="language-javascript">trace(dompet[0]); // &quot;Uang&quot;
+trace(dompet[1]); // &quot;KTP&quot;
+</code></pre>
+<p>Bila digambarkan dengan table, seperti ini:</p>
+<div class="table-wrapper"><table><thead><tr><th>Nomor Urut</th><th>Index</th><th>Nilai Array</th></tr></thead><tbody>
+<tr><td>1</td><td>0</td><td><code>&quot;Uang&quot;</code></td></tr>
+<tr><td>2</td><td>1</td><td><code>&quot;KTP&quot;</code></td></tr>
+<tr><td>3</td><td>2</td><td><code>&quot;Poto VTuber&quot;</code></td></tr>
+</tbody></table>
+</div>
+<blockquote>
+<p>Pro-tip: Index selalu bernilai dikurang 1 terhadap Nomor Urut, Index = Nomor Urut - 1.</p>
+</blockquote>
+<p>Fakta menariknya, Koleksi bisa diterapkan untuk menampung inventory player dalam game, seperti contoh variabel dompet diatas.</p>
+<h2 id="loop"><a class="header" href="#loop">Loop</a></h2>
+<p>Konsep looping sesuai artinya yaitu perulangan, looping bertujuan untuk mengulangi eksekusi kode sampai sebuah kondisi terpenuhi, serupa dengan branching yakni menjalankan sebuah aksi dalam kondisi tertentu.</p>
+<p>// WIP</p>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="pengenalan-haxeflixel"><a class="header" href="#pengenalan-haxeflixel">Pengenalan Haxeflixel</a></h2>
+<p>Haxeflixel adalah game engine 2D yang bersifat roll your game engine, tentunya bahasa yang dipakai untuk game engine adalah Haxe. </p>
+<p>Pada serial ini kamu akan belajar mengenai komponen mekanik game dengan alat peraganya Haxeflixel.</p>
+<ul>
+<li>Apa itu Game Engine</li>
+<li>Installasi Haxeflixel</li>
+<li>Konsep-konsep penting dalam Haxeflixel</li>
+<li>Kanvas</li>
+<li>Sprite</li>
+<li>Mekanisme bergerak</li>
+<li>Animasi</li>
+<li>Level dan LDtk</li>
+<li>Status Level</li>
+<li>Status Objek</li>
+<li>Finite State Machine</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="apa-itu-game-engine"><a class="header" href="#apa-itu-game-engine">Apa itu <em>Game Engine</em></a></h1>
+<p><em>Game engine</em> adalah kerangka kerja (<em>framework</em>) perangkat lunak untuk mengembangkan
+sebuah game. Bila <em>game</em> diumpamakan dengan kendaran roda empat atau mobil, <em>Game engine</em>
+adalah kerangka tulang dan mesin mobil yang menjadi bentuk dasar dan tenaga dari fungsi mobil. </p>
+<p>Lalu, bagian-bagian tampak dari mobil seperti pintu dan ban ibarat komponen <em>game</em> yang 
+kita mainkan seperti gambar dan respon terhadap input. Maka tugas seorang <em>game developer</em> adalah membuat kerangka dan mesin mobil ini menjadi mobil seutuhnya, membuat 
+<em>game</em> menggunakan <em>game engine</em>.</p>
+<p>Kita tidak bisa mengendarai mobil bila tidak ada ban atau pintu, bahkan tanpa semua 
+komponen tampak yang kita sebutkan tadi mobil hanya sebuah kumpulan besi dengan bentuk aneh.</p>
+<h2 id="haxeflixel"><a class="header" href="#haxeflixel">Haxeflixel</a></h2>
+<p>HaxeFlixel adalah game engine khusus 2D (dimensi) yang ditulis dalam bahasa Haxe dan distribusikan secara bebas dan <em>open-source</em>. Game engine ini bersifat <em>roll-your-own engine</em> artinya game engine yang dipakai merupakan pustaka-pustaka program siap pakai ke dalam program kamu, tanpa ada game editor seperti game engine kelas besar lainya. Hal ini memang terkesan sulit diawal karena tanpa tools grafis, kita akan 
+kebingungan untuk membangun workflow. </p>
+<p>Tetapi, jangan khawatir HaxeFlixel memiliki intergrasi ke kode editor seperti Visual 
+Studio Code dan Eclipse yang memudahkan kamu untuk memulai dan ada bab saya akan 
+menjelaskan <em>workflow</em> (alur kerja) saya membuat game dengan HaxeFlixel serta 
+rekomendasi tool pendamping untuk meningkatkan produktifitas seperti LDtk dan 
+sebagainya.</p>
+<p>Keuntungan yang dimiliki Haxeflixel yaitu jangkauan multi-platform yang luas seperti 
+kamu bisa menulis game yang bisa berjalan di desktop, android, web bahkan Xbox sekalipun.
+Ini salah satu keuntungan kenapa <em>game engine</em> ini ditulis dalam bahasa Haxe.</p>
+<p>Pada bab akhir bagian ini kamu akan belajar menginstall aplikasi tambahan untuk 
+mengekspor game ke platform tertentu dan setelah bab ini kamu akan belajar cara menginstall Haxeflixel.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="menginstall-haxeflixel"><a class="header" href="#menginstall-haxeflixel">Menginstall Haxeflixel</a></h1>
+<p>Haxeflixel adalah pustaka dari bahasa Haxe, kita perlu memanfaatkan perintah <code>haxelib</code> untuk menginstallnya berserta ketergantunganya lainya. </p>
+<p>Perlu di ingat proses ini memerlukan internet karena haxelib akan mengambil paket pustaka dari server.</p>
+<p>Berikut perintahnya di command prompt atau console terminal komputer kamu:</p>
+<blockquote>
+<p>Catatan : simbol <code>$</code> menandakan batas baris perintah jadi tidak perlu ditulis. Setelah menulis satu baris jangan lupa enter dan jalankan semua baris perintah satu persatu.</p>
+</blockquote>
+<ul>
+<li>Install </li>
+</ul>
+<p>Dengan perintah dibawah kamu akan menginstall haxeflixel dan aplikasi, proses ini cukup memakan waktu karena terutama openfl memiliki ukuran yang cukup besar untuk di unduh.</p>
+<pre><code class="language-sh">$ haxelib install lime
+$ haxelib install openfl
+$ haxelib install flixel
+</code></pre>
+<p>Penjelasan dari paket yang kamu install:</p>
+<ul>
+<li><code>flixel</code>, pustaka game engine yang akan kamu import ke projek game.</li>
+<li><code>lime</code>, pustaka untuk perkakas yang dibutuhakan flixel, seperti support editor dan sebagainya.</li>
+<li><code>openfl</code>, pustaka untuk fungsi-fungsi tamabahan di haxeflixel</li>
+</ul>
+<p>Kemudian kita perlu setup untuk memastikan tidak yang tertinggal.</p>
+<pre><code class="language-sh">$ haxelib lime setup
+$ haxelib lime setup flixel
+</code></pre>
+<p>Baris pertama untuk setup <code>lime</code> dan baris kedua untuk setup <code>flixel</code>.</p>
+<ul>
+<li>Tooling</li>
+</ul>
+<p>Bagian sebelumnya kamu sudah menginstall game engine, sekarang kamu akan menginstall tools dari flixel untuk memudahkan kita untuk menjalankan game kamu.</p>
+<pre><code class="language-sh">$ haxelib install flixel-tools
+</code></pre>
+<p>Sekarang installasi kamu sudah selesai, untuk menguji apakah flixel terinstall kamu bisa menjalankan <code>flixel</code> di command prompt atau konsol terminal kamu, bila terdapat tulisan command not found maka ada yang tertinggal dari proses installasi kamu.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="membuat-projek-game"><a class="header" href="#membuat-projek-game">Membuat projek game</a></h1>
+<p>Setelah kamu menginstall flixel dan ketergantunganya sekarang kamu bisa membuah project game, buka command prompt ditempat yang kamu mau kemudian jalankan perintah berikut:</p>
+<pre><code class="language-sh">$ flixel tpl -n &quot;&lt;nama game kamu&gt;&quot; -ide &lt;code editor kamu&gt;
+</code></pre>
+<p>Sebagai contoh:</p>
+<pre><code class="language-sh">$ flixel tpl -n &quot;Fre the Forgotten Cyborg&quot; -ide vscode
+</code></pre>
+<p>Kemudian kamu periksa, apakah ada folder baru dengan nama yang sesuai dengan nama game kamu. </p>
+<p>Jika kamu sudah menginstall vscode, vscode akan otomatis terbuka pada folder game yang dibuat setelah  kamu menulis perintah membuat projek dan memencet tombol <strong>Enter</strong>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h3 id="mendesain-game"><a class="header" href="#mendesain-game">Mendesain Game</a></h3>
+<p>Bagian ini kita akan lebih berkecipung ke aspek desain pengalaman bermain game, dibagian ini kita tidak lagi mengulas tentang kode dan membuat ini itu tetapi menyusun apa saja yang akan ditulis kedalam kode menjadikanya sebuah pengalaman bermain sgame.</p>
+<ul>
+<li>Apa itu Design Game</li>
+<li>Elemen Dasar dalam Bermain
+<ul>
+<li>Aksi</li>
+<li>Aturan</li>
+<li>Tujuan</li>
+<li>Objek</li>
+<li>Arena</li>
+<li>Pemain</li>
+</ul>
+</li>
+<li>Membangkitkan Suasana Bermain</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="referensi"><a class="header" href="#referensi">Referensi</a></h2>
+<p>Buku ini tidak berdiri sendiri, ia ditopang dari banyak referensi yang penulis kumpulkan. Berikut daftarnya:</p>
+<ul>
+<li>Munir, Rinaldi. 2011. Algoritma dan Pemrograman dalam Bahasa Pascal dan C Edisi Revisi. Bandung. Penerbit Informatika.</li>
+<li>Gaarder, Jostein. Astuti, Rahmani. 1991/2022. Dunia Sophie. Bandung. Penerbit Mizan.</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+    </body>
+</html>
