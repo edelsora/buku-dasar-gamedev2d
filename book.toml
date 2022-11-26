@@ -1,0 +1,7 @@
+[book]
+title = "(WIP) Dasar GameDev 2D dengan Haxeflixel"
+authors = ["dnogl"]
+language = "id"
+multilingual = true
+src = "src"
+site-url = "/tutorial-gamedev2d-haxeflixel/"
