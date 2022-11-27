@@ -1,6 +1,6 @@
 ## Tentang Buku ini
 
-Saya buat buku ini untuk mengenalkan penciptaan game komputer 2D. Saya harap buku ini membantu kamu mampu mengenal dunia pengembangan game sampai mempublikasikan game kamu secara indie, jangan khawatir tidak bisa programming karena dalam buku ini saya menambahkan bahasan dasar pemrograman untuk pemula, bahasa pemrograman Haxe.
+Saya membuat buku ini untuk mengenalkan penciptaan game komputer 2D. Saya harap buku ini membantu kamu mengenal dunia pengembangan game sampai mampu mempublikasikan game kamu secara indie, jangan khawatir tidak bisa programming karena dalam buku ini saya menambahkan bahasan dasar pemrograman untuk pemula, bahasa pemrograman Haxe.
 
 Buku ini akan dibagi menjadi 4 segment utama:
 
@@ -20,10 +20,10 @@ Bagian ini akan fokus berkenalan dengan perkakas yang dibutuhkan untuk membuat g
 
 Bagian ini berfokus kepada aspek rekasaya perangkat lunak dari sisi game developer, seperti membuat dokumen design, melakukan riset dari game orang lain dan merilis game anda untuk dimainkan oleh para gamers.
 
-Buku ini gratis (tapi bila kamu berbaik hati ingin donasi bisa, [klik ini](https://github.com/sponsors/dnogl)) saya dedikasikan untuk siapa pun yang ingin terjun mengembang game sendiri (termasuk diri saya dahulu), Frederett salah satu motivasi saya ingin membuat game untuk dimainkan oleh beliau alias saya nge-*simp* yang berakhir saya tetarik dengan pengembangan game, dan yang terpenting untuk bangkitnya developer game Indonesia.
+Buku ini gratis saya dedikasikan untuk siapa pun yang ingin terjun mengembang game (termasuk diri saya dahulu, dan bila kamu ingin berbaik hati donasi bisa [klik ini](https://github.com/sponsors/dnogl) melalui sponsor GitHub), Frederett salah satu motivasi saya ingin membuat game untuk dimainkan oleh beliau alias saya nge-*simp* yang berakhir saya tetarik dengan pengembangan game seutuhnya dan yang terpenting, untuk kebangkitan developer game Indonesia.
 
 <section style="text-align: right"> 
 Internet, 19 November 2022
 
-Yoghaswara **"dnogl"** Hadi Nugroho
+<a href="https://dnogl.github.io">Yoghaswara <b>"dnogl"</b> Hadi Nugroho</a>
 </section>

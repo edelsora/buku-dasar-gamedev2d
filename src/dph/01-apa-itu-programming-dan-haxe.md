@@ -16,7 +16,7 @@ Kunci sukses berkomunikasi dengan komputer selain menguasai pemrograman dan teor
 
 Komputer tidak bisa mengerti bahasa manusia, maka dibuat bahasa pendamping sehingga komputer dan manusia bisa bertukar pikiran. Bahasa ini disebut bahasa pemrograman yang agak serupa dengan bahasa manusia (Bahasa Inggris) tetapi memiliki makna-makna yang bisa dipahami oleh komputer.
 
-Pada buku ini kita akan menggunakan bahasa pemrograma Haxe (dibaca Heks), karena bahasa bersifat objek oriented, multi platform dan memiliki pustaka pengolahan grafis yang baik sehingga cocok untuk digunakan untuk penggembangan game (karena game banyak memengguankan grafis dan audio komputer).
+Pada buku ini kita akan menggunakan bahasa pemrograma Haxe (dibaca Heks), karena bahasa bersifat objek oriented, multi platform dan memiliki pustaka pengolahan grafis yang baik sehingga cocok untuk digunakan untuk penggembangan game (karena game banyak memenggunakan grafis dan audio komputer).
 
 ## Cara komputer menjalankan program.
 
@@ -34,10 +34,12 @@ Berikut sekedar contoh kode program "Hello UwU" dalam Haxe:
 
 ```javascript
 class Test {
-  static function main() {
+  static public function main() {
     trace("Hello, UwU");
   }
 }
 ```
 
 Kamu bisa mencobanya tanpa menginstall kompilator Haxe di [https://try.haxe.org/](https://try.haxe.org/#1f9fE444).
+Bila kamu memiliki akun telegram, ada komunitas pengguna Haxe di Indonesia disana dan kamu bisa bergabung melalui
+link [https://HaxeID.t.me](https://HaxeID.t.me) atau dipencarian telegram ketik @HaxeID dengan nama Haxe Warrior ID.

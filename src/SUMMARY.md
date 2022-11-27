@@ -6,8 +6,10 @@
 
 [Pengantar](./README.md)
 1. [Pengenalan Dunia Game](pdg/README.md)
+    - [Apa itu Game](pdg/01-apa-itu-game.md)
 2. [Dasar Pemrograman Haxe](dph/README.md)
     - [Apa itu Pemrograman](dph/01-apa-itu-programming-dan-haxe.md)
+    - [Installasi Haxe](dph/02-installasi-haxe.md)
     - [Variable](dph/04-variable.md)
     - [Tipe Data](dph/05-tipe-data.md)
     - [Operator](dph/06-operator.md)

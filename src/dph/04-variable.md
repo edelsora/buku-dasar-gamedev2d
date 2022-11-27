@@ -2,7 +2,7 @@
 
 Kode program komputer tersusun dari banyak komponen logis, seperti branching, looping, operator dan variable untuk mengolah data. Kita mulai dari belakang yakni variable.
 
-**Variabel** adalah tempat kita menyimpan sementara nilai dalam program, nilai ini akan disimpan didalam memori (RAM) komputer dan kita dapat mengambil nilai tersebut dengan menulis namanya. Ibarat sebuah rumah, nilai yang disimpan ke komputer pasti memiliki alamat supaya kita bisa mengunjunginya (mengguankan nilai yang disimpan) untuk keperluan kita.
+**Variabel** adalah tempat kita menyimpan sementara nilai dalam program, nilai ini akan disimpan didalam memori (RAM) komputer dan kita dapat mengambil nilai tersebut dengan menulis namanya. Ibarat sebuah rumah, nilai yang disimpan ke komputer pasti memiliki alamat supaya kita bisa mengunjunginya (menggunakan nilai yang disimpan) untuk keperluan kita.
 
 Variable tersusun dari 3 komponen utama:
 
