@@ -19,6 +19,7 @@
     - [Apa itu Game Engine](hxf/01-game-engine.md)
     - [Installasi Haxeflixel](hxf/02-installasi-haxeflixel.md)
     - [Membuat Project Game](hxf/03-membuat-project-game.md)
+    - [Konsep-Konsep Mekanik Game](hxf/04-konsep-konsep-pada-haxeflixel.md)
 4. [Mendesain Game](ddg/README.md)
 
 -----------

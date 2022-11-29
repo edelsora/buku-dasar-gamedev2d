@@ -161,10 +161,8 @@ while(pointer < koleksi.length){
 
     }
 
-    pointer += 1;
+    pointer += 1; // ini untuk menjadi 
 }
 ```
 
 Iterator bermanfaat pada kasus yang tidak melibatkan perubahan pada isi array secara individual (satu-satu), cocok untuk kasus membaca isinya saja seperti melakukan pencarian nilai atau penyalinan array.
-
-Kesimpulanya, looping cocok untuk operasi yang memerlukan perubahan nilai elemen array sedangkan iterator
